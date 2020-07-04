@@ -1,14 +1,16 @@
-// Detecting keyboard press 
+// Detecting keyboard press
 for (var i = 0; i < document.querySelectorAll(".drum").length; i++) {
   document.querySelectorAll(".drum")[i].addEventListener("click", function() {
     var buttonpressed = this.innerHTML;
     makeSound(buttonpressed);
+    buttonAnimation(buttonpressed);
   });
 }
 
 //Detecting Keyboard press
 document.addEventListener("keydown", function(event) {
   makeSound(event.key);
+  buttonAnimation(event.key);
 });
 
 function makeSound(key) {
@@ -44,4 +46,12 @@ function makeSound(key) {
     default:
       console.log(buttonpressed);
   }
+}
+
+function buttonAnimation(buttonpressed){
+  var classpressed = "."+buttonpressed;
+  document.querySelector(classpressed).classList.add("pressed");
+  setTimeout(function(){
+    document.querySelector(classpressed).classList.remove("pressed");
+  },1);
 }
